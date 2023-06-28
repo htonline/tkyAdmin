@@ -75,6 +75,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
         FileUtil.checkSize(properties.getMaxSize(), multipartFile.getSize());
         String suffix = FileUtil.getExtensionName(multipartFile.getOriginalFilename());
         String type = FileUtil.getFileType(suffix);
+//        文件写入磁盘（将上传的文件保存到指定路径中。）
         File file = FileUtil.upload(multipartFile, properties.getPath().getPath() + type +  File.separator);
         if(ObjectUtil.isNull(file)){
             throw new BadRequestException("上传失败");

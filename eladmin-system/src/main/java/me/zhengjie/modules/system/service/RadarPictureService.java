@@ -19,6 +19,8 @@ import me.zhengjie.modules.system.domain.RadarPicture;
 import me.zhengjie.modules.system.service.dto.RadarPictureDto;
 import me.zhengjie.modules.system.service.dto.RadarPictureQueryCriteria;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Map;
 import java.util.List;
 import java.io.IOException;
@@ -87,4 +89,12 @@ public interface RadarPictureService {
      * @return  返回所有 radar_id == data.getId()的行
      */
     List<RadarPictureDto> findByRadarId(Integer id);
+
+    /**
+     * 上传图片
+     * @param name 文件名undefined(不重要，仿写)
+     * @param file  文件
+     * @return 插入的那个文件
+     */
+    RadarPicture uploadPicture(String id, MultipartFile file);
 }

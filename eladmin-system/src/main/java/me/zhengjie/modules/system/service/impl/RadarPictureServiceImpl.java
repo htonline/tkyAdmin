@@ -15,9 +15,12 @@
 */
 package me.zhengjie.modules.system.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
+import me.zhengjie.config.FileProperties;
+import me.zhengjie.domain.LocalStorage;
+import me.zhengjie.exception.BadRequestException;
 import me.zhengjie.modules.system.domain.RadarPicture;
-import me.zhengjie.utils.ValidationUtil;
-import me.zhengjie.utils.FileUtil;
+import me.zhengjie.utils.*;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.modules.system.repository.RadarPictureRepository;
 import me.zhengjie.modules.system.service.RadarPictureService;
@@ -28,8 +31,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import me.zhengjie.utils.PageUtil;
-import me.zhengjie.utils.QueryHelp;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.io.IOException;
@@ -49,6 +53,7 @@ public class RadarPictureServiceImpl implements RadarPictureService {
 
     private final RadarPictureRepository radarPictureRepository;
     private final RadarPictureMapper radarPictureMapper;
+    private final FileProperties properties;
 
     @Override
     public Map<String,Object> queryAll(RadarPictureQueryCriteria criteria, Pageable pageable){
@@ -113,5 +118,36 @@ public class RadarPictureServiceImpl implements RadarPictureService {
         queryCriteria.setRadarId(radarId);
         List<RadarPictureDto> radarPictureDtoList = radarPictureMapper.toDto(radarPictureRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, queryCriteria, criteriaBuilder)));
         return radarPictureDtoList;
+    }
+
+    @Override
+//    ↓表示该方法在执行过程中将被包装在一个事务中，并且在出现异常时进行回滚。
+    @Transactional(rollbackFor = Exception.class)
+    public RadarPicture uploadPicture(String id, MultipartFile multipartFile) {
+//        1.上传文件的大小是否超过了设定的最大值。properties.getMaxSize()获取了最大文件大小的配置信息。
+        FileUtil.checkSize(properties.getMaxSize(), multipartFile.getSize());
+//        2.获取上传文件的后缀名。
+        String suffix = FileUtil.getExtensionName(multipartFile.getOriginalFilename());
+//        3.根据文件后缀名获取文件类型。
+        String type = FileUtil.getFileType(suffix);
+//        4.文件写入磁盘（将上传的文件保存到指定路径中。）获取了文件保存路径的配置信息。
+        File file = FileUtil.upload(multipartFile, properties.getPath().getPath() + type +  File.separator);
+//        5.如果上传文件失败（file为空），则抛出一个BadRequestException异常，提示上传失败。
+        if(ObjectUtil.isNull(file)){
+            throw new BadRequestException("上传失败");
+        }
+        try {
+//            6.将文件录入数据库
+            RadarPicture radarPicture = new RadarPicture();
+            radarPicture.setRadarId(Integer.parseInt(id));
+            radarPicture.setPath(file.getPath());
+            radarPicture.setFileName(file.getName());
+            return radarPictureRepository.save(radarPicture);
+        }catch (Exception e){
+//            如果在保存过程中出现异常，即catch块中的代码被执行，调用FileUtil.del(file)删除之前上传的文件，并将异常继续抛出
+            FileUtil.del(file);
+            throw e;
+        }
+
     }
 }
