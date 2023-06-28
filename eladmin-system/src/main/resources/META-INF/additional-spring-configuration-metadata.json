@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "file.windows.path",
+      "type": "java.lang.String",
+      "description": "Description for file.windows.path."
+  }
+] }
