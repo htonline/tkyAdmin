@@ -83,7 +83,7 @@ public class HotfixController {
     @Log("获得api/hotfix")
     @AnonymousGetMapping(value = "/gethotfixpag")
     public void getHotfix(HttpServletRequest request, HttpServletResponse response){
-        File file = new File(properties.getPath().getPath(),"hotfix_7.txt");
+        File file = new File(properties.getPath().getPath(),"patch_signed_7zip.apk");
         try {
         if (file.exists()){
             HttpHeaders headers = new HttpHeaders();

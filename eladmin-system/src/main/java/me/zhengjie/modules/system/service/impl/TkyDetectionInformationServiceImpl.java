@@ -161,7 +161,7 @@ public class TkyDetectionInformationServiceImpl implements TkyDetectionInformati
                 .addHeader("Cookie", "CRBIMSSOJWT=" + jwt)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            System.out.println(response);
+            System.out.println(response.code()+"    "+response.body().string()+"   "+response.message().toString());
         } catch (Exception e) {
             System.out.println(e);
         }
