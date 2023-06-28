@@ -34,12 +34,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 /**
 * @website https://el-admin.vip
@@ -142,6 +140,8 @@ public class RadarPictureServiceImpl implements RadarPictureService {
             radarPicture.setRadarId(Integer.parseInt(id));
             radarPicture.setPath(file.getPath());
             radarPicture.setFileName(file.getName());
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());  // 获取当前时间戳(sql)
+            radarPicture.setCreateTime(currentTime);
             return radarPictureRepository.save(radarPicture);
         }catch (Exception e){
 //            如果在保存过程中出现异常，即catch块中的代码被执行，调用FileUtil.del(file)删除之前上传的文件，并将异常继续抛出
