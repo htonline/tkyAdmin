@@ -22,7 +22,7 @@ import me.zhengjie.annotation.Query;
 /**
 * @website https://el-admin.vip
 * @author zuohaitao
-* @date 2023-06-27
+* @date 2023-06-30
 **/
 @Data
 public class RadarDiseasetypePicturesQueryCriteria{
@@ -31,7 +31,63 @@ public class RadarDiseasetypePicturesQueryCriteria{
     @Query
     private Integer id;
 
-    /** 精确 */
-    @Query
-    private String diseaseType;
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category1;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category2;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category3;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category4;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category5;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category6;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category7;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category8;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category9;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category10;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category11;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category12;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category13;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category14;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String category15;
 }

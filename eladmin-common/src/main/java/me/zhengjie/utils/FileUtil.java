@@ -213,8 +213,9 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
             String path = filePath + fileName;
             // getCanonicalFile 可解析正确各种路径
             File dest = new File(path).getCanonicalFile();
-            // 检测是否存在目录
+            // 检测是否存在目录, 不存在就创建;
             if (!dest.getParentFile().exists()) {
+//                mkdirs() 方法会创建多层目录，包括不存在的父目录。如果目录创建成功，mkdirs() 方法将返回 true，否则返回 false。
                 if (!dest.getParentFile().mkdirs()) {
                     System.out.println("was not successful.");
                 }

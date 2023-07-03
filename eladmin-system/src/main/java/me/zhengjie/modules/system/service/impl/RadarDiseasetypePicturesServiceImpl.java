@@ -41,7 +41,7 @@ import java.util.LinkedHashMap;
 * @website https://el-admin.vip
 * @description 服务实现
 * @author zuohaitao
-* @date 2023-06-27
+* @date 2023-06-30
 **/
 @Service
 @RequiredArgsConstructor
@@ -96,7 +96,21 @@ public class RadarDiseasetypePicturesServiceImpl implements RadarDiseasetypePict
         List<Map<String, Object>> list = new ArrayList<>();
         for (RadarDiseasetypePicturesDto radarDiseasetypePictures : all) {
             Map<String,Object> map = new LinkedHashMap<>();
-            map.put("病害类型", radarDiseasetypePictures.getDiseaseType());
+            map.put("Category1", radarDiseasetypePictures.getCategory1());
+            map.put("Category2", radarDiseasetypePictures.getCategory2());
+            map.put("Category3", radarDiseasetypePictures.getCategory3());
+            map.put("Category4", radarDiseasetypePictures.getCategory4());
+            map.put("Category5", radarDiseasetypePictures.getCategory5());
+            map.put("Category6", radarDiseasetypePictures.getCategory6());
+            map.put("Category7", radarDiseasetypePictures.getCategory7());
+            map.put("Category8", radarDiseasetypePictures.getCategory8());
+            map.put("Category9", radarDiseasetypePictures.getCategory9());
+            map.put("Category10", radarDiseasetypePictures.getCategory10());
+            map.put("Category11", radarDiseasetypePictures.getCategory11());
+            map.put("Category12", radarDiseasetypePictures.getCategory12());
+            map.put("Category13", radarDiseasetypePictures.getCategory13());
+            map.put("Category14", radarDiseasetypePictures.getCategory14());
+            map.put("Category15", radarDiseasetypePictures.getCategory15());
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);

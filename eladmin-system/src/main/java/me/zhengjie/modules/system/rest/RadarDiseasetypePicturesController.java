@@ -16,15 +16,11 @@
 package me.zhengjie.modules.system.rest;
 
 import me.zhengjie.annotation.Log;
-import me.zhengjie.modules.system.domain.DeviceInformation;
 import me.zhengjie.modules.system.domain.RadarDiseasetypePictures;
 import me.zhengjie.modules.system.service.RadarDiseasetypePicturesService;
 import me.zhengjie.modules.system.service.RadarPictureService;
-import me.zhengjie.modules.system.service.dto.RadarDiseasetypePicturesDto;
 import me.zhengjie.modules.system.service.dto.RadarDiseasetypePicturesQueryCriteria;
 import me.zhengjie.modules.system.service.dto.RadarPictureDto;
-import me.zhengjie.service.dto.LocalStorageQueryCriteria;
-import net.dreamlu.mica.core.result.R;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
 * @website https://el-admin.vip
 * @author zuohaitao
-* @date 2023-06-27
+* @date 2023-06-30
 **/
 @RestController
 @RequiredArgsConstructor

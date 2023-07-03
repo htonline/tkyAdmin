@@ -22,7 +22,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 /**
 * @website https://el-admin.vip
 * @author zuohaitao
-* @date 2023-06-27
+* @date 2023-06-30
 **/
 public interface RadarDiseasetypePicturesRepository extends JpaRepository<RadarDiseasetypePictures, Integer>, JpaSpecificationExecutor<RadarDiseasetypePictures> {
 }

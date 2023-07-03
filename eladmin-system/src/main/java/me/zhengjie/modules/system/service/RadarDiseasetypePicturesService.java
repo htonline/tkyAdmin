@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 * @website https://el-admin.vip
 * @description 服务接口
 * @author zuohaitao
-* @date 2023-06-27
+* @date 2023-06-30
 **/
 public interface RadarDiseasetypePicturesService {
 

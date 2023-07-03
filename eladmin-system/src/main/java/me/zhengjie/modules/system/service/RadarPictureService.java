@@ -15,6 +15,7 @@
 */
 package me.zhengjie.modules.system.service;
 
+import me.zhengjie.modules.system.domain.RadarDiseasetypePictures;
 import me.zhengjie.modules.system.domain.RadarPicture;
 import me.zhengjie.modules.system.service.dto.RadarPictureDto;
 import me.zhengjie.modules.system.service.dto.RadarPictureQueryCriteria;
@@ -96,5 +97,5 @@ public interface RadarPictureService {
      * @param file  文件
      * @return 插入的那个文件
      */
-    RadarPicture uploadPicture(String id, MultipartFile file);
+    RadarPicture uploadPicture(RadarDiseasetypePictures radarDiseasetypePictures, MultipartFile file);
 }

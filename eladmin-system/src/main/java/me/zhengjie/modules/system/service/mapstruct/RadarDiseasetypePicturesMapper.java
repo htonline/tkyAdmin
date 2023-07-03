@@ -24,7 +24,7 @@ import org.mapstruct.ReportingPolicy;
 /**
 * @website https://el-admin.vip
 * @author zuohaitao
-* @date 2023-06-27
+* @date 2023-06-30
 **/
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RadarDiseasetypePicturesMapper extends BaseMapper<RadarDiseasetypePicturesDto, RadarDiseasetypePictures> {

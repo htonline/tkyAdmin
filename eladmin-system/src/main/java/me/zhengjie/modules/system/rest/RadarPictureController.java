@@ -15,7 +15,9 @@
 */
 package me.zhengjie.modules.system.rest;
 
+import io.swagger.models.auth.In;
 import me.zhengjie.annotation.Log;
+import me.zhengjie.modules.system.domain.RadarDiseasetypePictures;
 import me.zhengjie.modules.system.domain.RadarPicture;
 import me.zhengjie.modules.system.service.RadarPictureService;
 import me.zhengjie.modules.system.service.dto.RadarPictureQueryCriteria;
@@ -90,8 +92,33 @@ public class RadarPictureController {
 
     @ApiOperation("上传图片")
     @PostMapping(value = "/uploadPicture")
-    public ResponseEntity<Object> uploadPicture(@RequestParam String id, @RequestParam("file") MultipartFile file){
-        RadarPicture radarPicture = radarPictureService.uploadPicture(id, file);
+    public ResponseEntity<Object> uploadPicture(@RequestParam String id, @RequestParam String category1,
+                                                @RequestParam String category2, @RequestParam String category3,
+                                                @RequestParam String category4, @RequestParam String category5,
+                                                @RequestParam String category6, @RequestParam String category7,
+                                                @RequestParam String category8, @RequestParam String category9,
+                                                @RequestParam String category10, @RequestParam String category11,
+                                                @RequestParam String category12, @RequestParam String category13,
+                                                @RequestParam String category14, @RequestParam String category15,
+                                                @RequestParam("file") MultipartFile file){
+        RadarDiseasetypePictures radarDiseasetypePictures = new RadarDiseasetypePictures();
+        radarDiseasetypePictures.setId(Integer.parseInt(id));
+        radarDiseasetypePictures.setCategory1(category1);
+        radarDiseasetypePictures.setCategory2(category2);
+        radarDiseasetypePictures.setCategory3(category3);
+        radarDiseasetypePictures.setCategory4(category4);
+        radarDiseasetypePictures.setCategory5(category5);
+        radarDiseasetypePictures.setCategory6(category6);
+        radarDiseasetypePictures.setCategory7(category7);
+        radarDiseasetypePictures.setCategory8(category8);
+        radarDiseasetypePictures.setCategory9(category9);
+        radarDiseasetypePictures.setCategory10(category10);
+        radarDiseasetypePictures.setCategory11(category11);
+        radarDiseasetypePictures.setCategory12(category12);
+        radarDiseasetypePictures.setCategory12(category13);
+        radarDiseasetypePictures.setCategory14(category14);
+        radarDiseasetypePictures.setCategory15(category15);
+        RadarPicture radarPicture = radarPictureService.uploadPicture(radarDiseasetypePictures, file);
         return new ResponseEntity<>(radarPicture,HttpStatus.OK);
     }
 
